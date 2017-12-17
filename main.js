@@ -68,18 +68,16 @@ class Cube {
     this.el = document.createElement('div');
     this.el.classList.add('cube');
     this.el.cube = this;
-    this.nexts = [];
+    this.nexts = new Set();
   }
   
   bind(cube) {
-    this.nexts.push(cube);
-    cube.nexts.push(this);
+    this.nexts.add(cube);
+    cube.nexts.add(this);
   }
   
   next() {
-    const n = this.nexts.length;
-    const idx = Math.floor(Math.random() * n);
-    return this.nexts[idx];
+    return _.sample([...this.nexts]);
   }
   
   getOn() {
