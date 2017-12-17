@@ -15,20 +15,20 @@ class Crawler {
 
   createMatrix() {
     const matrix = [];
-    for (let rowIdx = 0; rowIdx < this.rows; rowIdx++) {
-      const row = [];
-      const DOMrow = document.createElement('div');
-      DOMrow.className = 'row';
-      for (let colIdx = 0; colIdx < this.cols; colIdx++) {
-        const cube = new Cube();
-        if (rowIdx > 0) { cube.bind(matrix[rowIdx - 1][colIdx]); }
-        if (colIdx > 0) { cube.bind(row[colIdx - 1]); }
-        row.push(cube);
-        DOMrow.appendChild(cube.el);
-      }
-      matrix.push(row);
-      this.$root.appendChild(DOMrow);
-    }
+    _.times(this.rows, rowIdx => {
+	const row = [];
+	const DOMrow = document.createElement('div');
+	DOMrow.className = 'row';
+	_.times(this.cols, colIdx => {
+	    const cube = new Cube();
+	    if (rowIdx > 0) { cube.bind(matrix[rowIdx - 1][colIdx]); }
+	    if (colIdx > 0) { cube.bind(row[colIdx - 1]); }
+	    DOMrow.appendChild(cube.el);
+	    row.push(cube);
+	});
+        this.$root.appendChild(DOMrow);
+        matrix.push(row);
+    });
     return matrix;
   }
 
