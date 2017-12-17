@@ -1,0 +1,80 @@
+body {
+  margin: 0 0 20px;
+  text-align: center;
+}
+
+.main-title {
+  color: white;
+  font-size: 2.5em;
+  font-weight: 100;
+  background: #ff675a;
+  padding: 10px 0 20px;
+  margin: 0;
+  box-shadow: 0 2px 4px hsla(0, 0%, 0%, 0.1);
+}
+
+#app {
+  margin: 30px;
+  --dark: #333;
+  --light: #fff;
+  --ant-color: #ff675a;
+  --cube-sz: 30px;
+  --ant-sz: 10px;
+  --cube-gap: calc(0.5 * var(--cube-sz) - 0.5 * var(--ant-sz))
+}
+
+.row {
+  margin: 0;
+  padding: 0;
+  line-height: 0;
+}
+
+.cube {
+  display: inline-block;
+  box-sizing: border-box;
+  width: var(--cube-sz);
+  height: var(--cube-sz);
+  border: 1px solid #aaa;
+  background: var(--light);
+  margin: .5px;
+}
+
+.black {
+  background: var(--dark);
+}
+
+.current {
+  position: relative;
+} 
+
+.current::before {
+  content: '';
+  position: absolute;
+  width: var(--ant-sz);
+  height: var(--ant-sz);
+  top: var(--cube-gap);
+  left: var(--cube-gap);
+  background: var(--ant-color);
+  border-radius: 50%;
+}
+
+button {
+  font-size: 1.2em;
+  padding: 10px 20px;
+  margin: 0 10px;
+  border-radius: 4px;
+  border: none;
+  color: white;
+}
+
+#starter {
+  background: #42cb86;
+}
+
+#stopper {
+  background: #ff675a;
+}
+
+#clear {
+  background: silver;
+}
