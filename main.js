@@ -1,7 +1,9 @@
 class Crawler {
-  constructor(n = 10) {
+  constructor(rows = 10, cols = rows) {
     this.$root = document.createElement('div');
-    this.matrix = this.createMatrix(n);
+    this.rows = rows;
+    this.cols = cols;
+    this.matrix = this.createMatrix();
     this.$root.addEventListener('click', e => {
       if (e.target.hasOwnProperty('cube')) {
         if (this.currentCube) { this.currentCube.getOff(); }
@@ -11,13 +13,13 @@ class Crawler {
     });
   }
 
-  createMatrix(n) {
+  createMatrix() {
     const matrix = [];
-    for (let rowIdx = 0; rowIdx < n; rowIdx++) {
+    for (let rowIdx = 0; rowIdx < this.rows; rowIdx++) {
       const row = [];
       const DOMrow = document.createElement('div');
       DOMrow.className = 'row';
-      for (let colIdx = 0; colIdx < n; colIdx++) {
+      for (let colIdx = 0; colIdx < this.cols; colIdx++) {
         const cube = new Cube();
         if (rowIdx > 0) { cube.bind(matrix[rowIdx - 1][colIdx]); }
         if (colIdx > 0) { cube.bind(row[colIdx - 1]); }
@@ -95,9 +97,9 @@ class Cube {
   }
 }
 
-const crawler = new Crawler(25);
+const crawler = new Crawler(4);
 crawler.bind(document.querySelector('#app'));
-document.querySelector('#starter').addEventListener('click', () => { 
+document.querySelector('#starter').addEventListener('click', () => {
   if (!crawler.start()) {
     alert('Please set the initial postion of the ant');
   }
